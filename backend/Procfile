@@ -1,1 +1,1 @@
-web: gunicorn wsgi:application --bind 0.0.0.0:$PORT --worker-tmp-dir /dev/shm --workers 2
+web: gunicorn wsgi:application --bind 0.0.0.0:8080 --worker-tmp-dir /dev/shm --workers 2
