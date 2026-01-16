@@ -18,5 +18,5 @@ COPY . .
 # Expose port 8080 (DigitalOcean default)
 EXPOSE 8080
 
-# Run gunicorn on port 8080
-CMD ["gunicorn", "config.wsgi:application", "--bind", "0.0.0.0:8080", "--workers", "2"]
+# Run gunicorn using the wsgi.py at root level
+CMD ["gunicorn", "wsgi:application", "--bind", "0.0.0.0:8080", "--workers", "2", "--worker-tmp-dir", "/dev/shm"]
