@@ -1,0 +1,22 @@
+# Django core
+Django>=4.2,<5.0
+djangorestframework
+django-cors-headers
+djangorestframework-simplejwt
+django-filter
+drf-nested-routers
+
+# Database
+psycopg2-binary
+dj-database-url
+
+# Static files & Media
+Pillow
+whitenoise
+
+# Production server
+gunicorn
+
+# Testing
+pytest
+pytest-django
