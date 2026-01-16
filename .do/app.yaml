@@ -14,7 +14,7 @@ spec:
       output_dir: dist
       catchall_document: index.html
 
-  # Backend - Django API
+  # Backend - Django API usando Docker
   services:
     - name: backend
       github:
@@ -22,12 +22,10 @@ spec:
         branch: main
         deploy_on_push: true
       source_dir: backend
-      environment_slug: python
+      dockerfile_path: Dockerfile
       http_port: 8080
       instance_count: 1
       instance_size_slug: basic-xxs
-      run_command: gunicorn config.wsgi:application --bind 0.0.0.0:8080 --workers 2
-      build_command: pip install -r requirements.txt
       envs:
         - key: DEBUG
           value: "0"
