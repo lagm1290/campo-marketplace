@@ -13,12 +13,8 @@ spec:
       build_command: npm install && npm run build
       output_dir: dist
       catchall_document: index.html
-      envs:
-        - key: VITE_API_URL
-          value: ${backend.PUBLIC_URL}/api
-          scope: BUILD_TIME
 
-  # Backend - Django API (usando buildpack Python, no Docker)
+  # Backend - Django API
   services:
     - name: backend
       github:
@@ -31,14 +27,13 @@ spec:
       instance_count: 1
       instance_size_slug: basic-xxs
       run_command: gunicorn config.wsgi:application --bind 0.0.0.0:8080 --workers 2
-      build_command: pip install -r requirements.txt && python manage.py collectstatic --noinput
+      build_command: pip install -r requirements.txt
       envs:
         - key: DEBUG
           value: "0"
         - key: DJANGO_ALLOWED_HOSTS
-          value: .ondigitalocean.app localhost
+          value: "*"
         - key: SECRET_KEY
-          type: SECRET
           value: django-production-secret-key-change-me-please-2024
         - key: CORS_ALLOWED_ORIGINS
-          value: https://*.ondigitalocean.app
+          value: "*"
